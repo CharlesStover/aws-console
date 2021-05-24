@@ -1,4 +1,5 @@
 import Button from '@awsui/components-react/button';
+import Checkbox from '@awsui/components-react/checkbox';
 import FormField from '@awsui/components-react/form-field';
 import Input from '@awsui/components-react/input';
 import SpaceBetween from '@awsui/components-react/space-between';
@@ -8,27 +9,31 @@ import AppLayout from '../../components/app-layout';
 import useAuthenticate from './authenticate.hook';
 
 interface Props {
-  onAccessKeyIdChange(accessKeyId?: string): void;
-  onSecretAccessKeyChange(secretAccessKey?: string): void;
+  onAuthentication(
+    accessKeyId: string,
+    secretAccessKey: string,
+    remember: boolean,
+  ): void;
 }
 
 export default function Authenticate({
-  onAccessKeyIdChange,
-  onSecretAccessKeyChange,
+  onAuthentication,
 }: Props): ReactElement {
   const {
     accessKeyId,
     accessKeyIdAriaLabel,
     handleAccessKeyIdChange,
+    handleRememberChange,
     handleSecretAccessKeyChange,
     handleSubmit,
+    remember,
     secretAccessKey,
     secretAccessKeyAriaLabel,
-  } = useAuthenticate({ onAccessKeyIdChange, onSecretAccessKeyChange });
+  } = useAuthenticate({ onAuthentication });
 
   return (
-    <AppLayout hideBreadcrumbs navigationHide toolsHide>
-      <SpaceBetween direction="vertical" size="m">
+    <AppLayout breadcrumbsHide contentType="form" navigationHide toolsHide>
+      <SpaceBetween direction="vertical" size="l">
         <FormField label={<I18n>Access key ID</I18n>}>
           <Input
             ariaLabel={accessKeyIdAriaLabel}
@@ -44,6 +49,9 @@ export default function Authenticate({
             value={secretAccessKey}
           />
         </FormField>
+        <Checkbox checked={remember} onChange={handleRememberChange}>
+          <I18n>Remember this device</I18n>
+        </Checkbox>
         <Button onClick={handleSubmit} variant="primary">
           <I18n>Authenticate</I18n>
         </Button>

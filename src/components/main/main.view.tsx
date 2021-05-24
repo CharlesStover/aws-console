@@ -1,31 +1,33 @@
 import { ReactElement } from 'react';
 import Authenticate from '../../components/authenticate';
 import Routes from '../../components/routes';
+import Authentication from '../../contexts/authentication';
 
 interface Props {
   accessKeyId?: string;
-  onAccessKeyIdChange(accessKeyId?: string): void;
-  onSecretAccessKeyChange(secretAccessKey?: string): void;
+  onAuthentication(
+    accessKeyId: string,
+    secretAccessKey: string,
+    remember: boolean,
+  ): void;
   secretAccessKey?: string;
 }
 
 export default function Main({
   accessKeyId,
-  onAccessKeyIdChange,
-  onSecretAccessKeyChange,
+  onAuthentication,
   secretAccessKey,
 }: Props): ReactElement {
   if (
     typeof accessKeyId === 'undefined' ||
     typeof secretAccessKey === 'undefined'
   ) {
-    return (
-      <Authenticate
-        onAccessKeyIdChange={onAccessKeyIdChange}
-        onSecretAccessKeyChange={onSecretAccessKeyChange}
-      />
-    );
+    return <Authenticate onAuthentication={onAuthentication} />;
   }
 
-  return <Routes />;
+  return (
+    <Authentication.Provider value={{ accessKeyId, secretAccessKey }}>
+      <Routes />
+    </Authentication.Provider>
+  );
 }

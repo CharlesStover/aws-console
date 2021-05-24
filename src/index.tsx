@@ -9,7 +9,9 @@ import { render } from 'react-dom';
 import App from './components/app';
 import root from './constants/root';
 import AppProps from './types/app-props';
+import getAuthentication from './utils/get-authentication';
 import './utils/report-web-vitals';
+import setAuthentication from './utils/set-authentication';
 
 interface Options {
   accessKeyId?: string;
@@ -62,23 +64,41 @@ class Application {
     disableMotion(!motion);
   }
 
+  private applyAuthentication(
+    accessKeyId: string,
+    secretAccessKey: string,
+    remember: boolean,
+  ): void {
+    this._accessKeyId = accessKeyId;
+    this._secretAccessKey = secretAccessKey;
+    if (remember) {
+      setAuthentication({
+        accessKeyId,
+        secretAccessKey,
+      });
+    }
+  }
+
   private get props(): AppProps {
     return {
       accessKeyId: this._accessKeyId,
       density: this._density,
       mode: this._mode,
       motion: this._motion,
-      onAccessKeyIdChange: this.setAccessKeyId.bind(this),
+      onAuthentication: this.setAuthentication.bind(this),
       onDensityChange: this.setDensity.bind(this),
       onModeChange: this.setMode.bind(this),
       onMotionChange: this.setMotion.bind(this),
-      onSecretAccessKeyChange: this.setSecretAccessKey.bind(this),
       secretAccessKey: this._secretAccessKey,
     };
   }
 
-  public setAccessKeyId(accessKeyId?: string): void {
-    this._accessKeyId = accessKeyId;
+  public setAuthentication(
+    accessKeyId: string,
+    secretAccessKey: string,
+    remember: boolean,
+  ): void {
+    this.applyAuthentication(accessKeyId, secretAccessKey, remember);
     this.render();
   }
 
@@ -97,17 +117,13 @@ class Application {
     this.render();
   }
 
-  public setSecretAccessKey(accessKeyId?: string): void {
-    this._secretAccessKey = accessKeyId;
-    this.render();
-  }
-
   public render(): void {
     render(<App {...this.props} />, root);
   }
 }
 
 new Application({
+  ...getAuthentication(),
   defaultDensity: DEFAULT_DENSITY,
   defaultMode: DEFAULT_MODE,
   defaultMotion: DEFAULT_MOTION,

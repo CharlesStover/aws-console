@@ -11,9 +11,9 @@ import useAppLayout from './app-layout.hook';
 interface Props {
   Tools?: ComponentType<unknown>;
   breadcrumbs?: BreadcrumbGroupProps.Item[];
+  breadcrumbsHide?: boolean;
   children: ReactNode;
   contentType?: AppLayoutProps.ContentType;
-  hideBreadcrumbs?: boolean;
   navigationHide?: boolean;
   notifications?: FlashbarProps.MessageDefinition[];
   onToolsChange?: AppLayoutProps['onToolsChange'];
@@ -24,9 +24,9 @@ interface Props {
 export default function CustomAppLayout({
   Tools,
   breadcrumbs,
+  breadcrumbsHide = false,
   children,
   contentType,
-  hideBreadcrumbs = false,
   navigationHide,
   notifications,
   onToolsChange,
@@ -50,7 +50,7 @@ export default function CustomAppLayout({
       <AppLayout
         ariaLabels={ariaLabels}
         breadcrumbs={
-          !hideBreadcrumbs && <Breadcrumbs>{breadcrumbs}</Breadcrumbs>
+          !breadcrumbsHide && <Breadcrumbs>{breadcrumbs}</Breadcrumbs>
         }
         content={children}
         contentType={contentType}

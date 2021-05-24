@@ -9,13 +9,6 @@ interface State {
   items: BreadcrumbGroupProps.Item[];
 }
 
-const DEFAULT_ITEMS: BreadcrumbGroupProps.Item[] = [
-  {
-    text: 'Open source AWS console',
-    href: '/',
-  },
-];
-
 export default function useBreadcrumbs(
   breadcrumbs: readonly BreadcrumbGroupProps.Item[],
 ): State {
@@ -30,8 +23,14 @@ export default function useBreadcrumbs(
     handleFollow,
 
     items: useMemo(
-      (): BreadcrumbGroupProps.Item[] => [...DEFAULT_ITEMS, ...breadcrumbs],
-      [breadcrumbs],
+      (): BreadcrumbGroupProps.Item[] => [
+        {
+          text: translate('Home') || '...',
+          href: '/',
+        },
+        ...breadcrumbs,
+      ],
+      [breadcrumbs, translate],
     ),
   };
 }

@@ -5,10 +5,13 @@ export default interface AppProps {
   density: Density;
   mode: Mode;
   motion: boolean;
-  onAccessKeyIdChange(accessKeyId?: string): void;
+  onAuthentication(
+    accessKeyId: string,
+    secretAccessKey: string,
+    remember: boolean,
+  ): void;
   onDensityChange(density: Density): void;
   onModeChange(mode: Mode): void;
   onMotionChange(motion: boolean): void;
-  onSecretAccessKeyChange(secretAccessKey?: string): void;
   secretAccessKey?: string;
 }

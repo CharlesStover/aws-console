@@ -1,12 +1,16 @@
+import { CheckboxProps } from '@awsui/components-react/checkbox';
 import { InputProps } from '@awsui/components-react/input';
 import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
 import { TranslateFunction, useTranslate } from 'lazy-i18n';
 import { useCallback } from 'react';
-import { useInput } from 'use-awsui';
+import { useCheckbox, useInput } from 'use-awsui';
 
 interface Props {
-  onAccessKeyIdChange(accessKeyId?: string): void;
-  onSecretAccessKeyChange(secretAccessKey?: string): void;
+  onAuthentication(
+    accessKeyId: string,
+    secretAccessKey: string,
+    remember: boolean,
+  ): void;
 }
 
 interface State {
@@ -16,23 +20,27 @@ interface State {
     this: void,
     event: NonCancelableCustomEvent<InputProps.ChangeDetail>,
   ): void;
+  handleRememberChange(
+    this: void,
+    event: NonCancelableCustomEvent<CheckboxProps.ChangeDetail>,
+  ): void;
   handleSecretAccessKeyChange(
     this: void,
     event: NonCancelableCustomEvent<InputProps.ChangeDetail>,
   ): void;
   handleSubmit(this: void): void;
+  remember: boolean;
   secretAccessKey: string;
   secretAccessKeyAriaLabel?: string;
 }
 
-export default function useAuthenticate({
-  onAccessKeyIdChange,
-  onSecretAccessKeyChange,
-}: Props): State {
+export default function useAuthenticate({ onAuthentication }: Props): State {
   // Contexts
   const translate: TranslateFunction = useTranslate();
 
   // States
+  const { checked: remember, handleChange: handleRememberChange } =
+    useCheckbox();
   const { handleChange: handleAccessKeyIdChange, value: accessKeyId } =
     useInput();
   const { handleChange: handleSecretAccessKeyChange, value: secretAccessKey } =
@@ -42,18 +50,14 @@ export default function useAuthenticate({
     accessKeyId,
     accessKeyIdAriaLabel: translate('Access key ID'),
     handleAccessKeyIdChange,
+    handleRememberChange,
     handleSecretAccessKeyChange,
+    remember,
     secretAccessKey,
     secretAccessKeyAriaLabel: translate('Secret access key'),
 
     handleSubmit: useCallback((): void => {
-      onAccessKeyIdChange(accessKeyId);
-      onSecretAccessKeyChange(secretAccessKey);
-    }, [
-      accessKeyId,
-      onAccessKeyIdChange,
-      onSecretAccessKeyChange,
-      secretAccessKey,
-    ]),
+      onAuthentication(accessKeyId, secretAccessKey, remember);
+    }, [accessKeyId, onAuthentication, remember, secretAccessKey]),
   };
 }

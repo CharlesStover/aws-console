@@ -1,13 +1,13 @@
 import { ReactElement } from 'react';
 import AppLayout from '../../components/app-layout';
-import useLogGroups from './log-groups.hook';
+import useAlarms from './alarms.hook';
 
-export default function LogGroups(): ReactElement {
-  const { breadcrumbs } = useLogGroups();
+export default function Alarms(): ReactElement {
+  const { breadcrumbs } = useAlarms();
 
   return (
     <AppLayout breadcrumbs={breadcrumbs} contentType="form" toolsHide>
-      CloudWatch log groups
+      CloudWatch Alarms
     </AppLayout>
   );
 }

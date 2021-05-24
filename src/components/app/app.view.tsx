@@ -18,11 +18,10 @@ export default function App({
   density,
   mode,
   motion,
-  onAccessKeyIdChange,
+  onAuthentication,
   onDensityChange,
   onModeChange,
   onMotionChange,
-  onSecretAccessKeyChange,
   secretAccessKey,
 }: AppProps): ReactElement {
   const { handleLocaleChange, locale } = useApp();
@@ -41,8 +40,7 @@ export default function App({
                 <Motion.Provider value={[motion, onMotionChange]}>
                   <Main
                     accessKeyId={accessKeyId}
-                    onAccessKeyIdChange={onAccessKeyIdChange}
-                    onSecretAccessKeyChange={onSecretAccessKeyChange}
+                    onAuthentication={onAuthentication}
                     secretAccessKey={secretAccessKey}
                   />
                 </Motion.Provider>
