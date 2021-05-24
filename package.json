@@ -1,0 +1,65 @@
+{
+  "name": "@charlesstover/aws-console",
+  "version": "0.1.0",
+  "author": "Charles Stover <aws-console@charlesstover.com>",
+  "description": "automated AWS console",
+  "homepage": "https://charlesstover.github.io/aws-console/",
+  "license": "MIT",
+  "private": true,
+  "repository": "github:CharlesStover/aws-console",
+  "bugs": {
+    "email": "aws-console@charlesstover.com",
+    "url": "https://github.com/CharlesStover/aws-console/issues"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/CharlesStover"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "eslint": "eslint '**/*.{js,jsx,json,ts,tsx}'",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
+  },
+  "devDependencies": {
+    "@awsui/components-react": "^3.0.151",
+    "@awsui/design-tokens": "^3.0.10",
+    "@awsui/global-styles": "^1.0.8",
+    "@awsui/test-utils-core": "^1.0.10",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.0.0",
+    "@testing-library/react-hooks": "^3.0.0",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-router-dom": "^5.1.7",
+    "@typescript-eslint/eslint-plugin": "^4.0.0",
+    "@typescript-eslint/parser": "^4.0.0",
+    "@yarnpkg/pnpify": "^3.0.0-rc.3",
+    "aws-sdk": "^2.912.0",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.0.0",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "lazy-i18n": "^2.0.9",
+    "prettier": "^2.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-query": "^3.16.0",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
+    "react-test-renderer": "^17.0.2",
+    "sass": "^1.34.0",
+    "tslib": "^2.0.0",
+    "typescript": "^4.1.0",
+    "use-awsui": "^1.0.3",
+    "use-awsui-router": "^1.0.1",
+    "web-vitals": "^1.0.1"
+  }
+}
