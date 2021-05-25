@@ -21,7 +21,7 @@ interface Options {
   secretAccessKey?: string;
 }
 
-const DEFAULT_DENSITY: Density = Density.Comfortable;
+const DEFAULT_DENSITY: Density = Density.Compact;
 const DEFAULT_MODE: Mode = Mode.Dark;
 const DEFAULT_MOTION = true;
 

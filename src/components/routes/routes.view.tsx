@@ -1,18 +1,45 @@
 import { ReactElement } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Alarms from '../../components/alarms';
 import Home from '../../components/home';
-import LogGroups from '../../components/log-groups';
-import Roles from '../../components/roles';
-import Users from '../../components/users';
+import ResourceList from '../../components/resource-list';
+import RESOURCES from '../../constants/resources';
+import ClientName from '../../types/client-name';
+import MethodName from '../../types/method-name';
+import Resource from '../../types/resource';
+import Resources from '../../types/resources';
+
+type AnyResource = Resource<
+  ClientName,
+  MethodName<ClientName>,
+  unknown,
+  ClientName,
+  MethodName<ClientName>,
+  unknown
+>;
+
+type ResourcesEntry = [keyof Resources, AnyResource];
+
+const resourcesEntries: ResourcesEntry[] = Object.entries(
+  RESOURCES,
+) as ResourcesEntry[];
+
+const mapResourcesEntryToRoutes = ([
+  path,
+  resource,
+]: ResourcesEntry): ReactElement => {
+  return (
+    <Route
+      component={ResourceList}
+      key={path}
+      path={`/${resource.list.label}`}
+    />
+  );
+};
 
 export default function Routes(): ReactElement {
   return (
     <Switch>
-      <Route component={Alarms} path="/alarms" />
-      <Route component={LogGroups} path="/log-groups" />
-      <Route component={Roles} path="/roles" />
-      <Route component={Users} path="/users" />
+      {resourcesEntries.map(mapResourcesEntryToRoutes)}
       <Route component={Home} />
     </Switch>
   );

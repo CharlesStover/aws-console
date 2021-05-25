@@ -13,6 +13,9 @@ export default function useItems(): SideNavigationProps.Item[] {
         type: 'link',
       },
       {
+        type: 'divider',
+      },
+      {
         href: '/alarms',
         text: translate('Alarms') || '...',
         type: 'link',
