@@ -7,7 +7,7 @@
 /.yarn/build-state.yml
 /.yarn/install-state.gz
 /build/
-/coverage/
+/jest/
 /node_modules/
 /types/
 /*.iml
