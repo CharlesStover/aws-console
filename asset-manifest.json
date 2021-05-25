@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/aws-console/static/css/main.cbe7ea9b.chunk.css",
-    "main.js": "/aws-console/static/js/main.7dad77f2.chunk.js",
-    "main.js.map": "/aws-console/static/js/main.7dad77f2.chunk.js.map",
+    "main.js": "/aws-console/static/js/main.8b58125a.chunk.js",
+    "main.js.map": "/aws-console/static/js/main.8b58125a.chunk.js.map",
     "runtime-main.js": "/aws-console/static/js/runtime-main.525d6ea1.js",
     "runtime-main.js.map": "/aws-console/static/js/runtime-main.525d6ea1.js.map",
     "static/css/2.bb15c427.chunk.css": "/aws-console/static/css/2.bb15c427.chunk.css",
-    "static/js/2.c434e99e.chunk.js": "/aws-console/static/js/2.c434e99e.chunk.js",
-    "static/js/2.c434e99e.chunk.js.map": "/aws-console/static/js/2.c434e99e.chunk.js.map",
+    "static/js/2.7f68b3c5.chunk.js": "/aws-console/static/js/2.7f68b3c5.chunk.js",
+    "static/js/2.7f68b3c5.chunk.js.map": "/aws-console/static/js/2.7f68b3c5.chunk.js.map",
     "index.html": "/aws-console/index.html",
     "static/css/2.bb15c427.chunk.css.map": "/aws-console/static/css/2.bb15c427.chunk.css.map",
     "static/css/main.cbe7ea9b.chunk.css.map": "/aws-console/static/css/main.cbe7ea9b.chunk.css.map",
-    "static/js/2.c434e99e.chunk.js.LICENSE.txt": "/aws-console/static/js/2.c434e99e.chunk.js.LICENSE.txt"
+    "static/js/2.7f68b3c5.chunk.js.LICENSE.txt": "/aws-console/static/js/2.7f68b3c5.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.525d6ea1.js",
     "static/css/2.bb15c427.chunk.css",
-    "static/js/2.c434e99e.chunk.js",
+    "static/js/2.7f68b3c5.chunk.js",
     "static/css/main.cbe7ea9b.chunk.css",
-    "static/js/main.7dad77f2.chunk.js"
+    "static/js/main.8b58125a.chunk.js"
   ]
 }
