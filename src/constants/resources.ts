@@ -1,23 +1,36 @@
 import { DescribeLogGroupsRequest } from 'aws-sdk/clients/cloudwatchlogs';
-import Resources from '../types/resources';
+import Resource from '../types/resource';
+import ResourceType from '../types/resource-type';
 
-const RESOURCES: Resources = {
-  'log-group': {
+const logGroupViewQueryRequestInputParam: keyof DescribeLogGroupsRequest =
+  'logGroupNamePrefix';
+
+const logGroupViewQueryRequest: Partial<DescribeLogGroupsRequest> = {
+  limit: 1,
+};
+
+const RESOURCES: Record<ResourceType, Resource> = {
+  'log-groups': {
     list: {
-      client: 'CloudWatchLogs',
-      label: 'log-groups',
-      method: 'describeLogGroups',
-      token: 'nextToken',
+      query: [
+        {
+          client: 'CloudWatchLogs',
+          key: 'logGroups',
+          method: 'describeLogGroups',
+          token: 'nextToken',
+        },
+      ],
     },
     view: {
-      client: 'CloudWatchLogs',
-      method: 'describeLogGroups',
-      request(id: string): DescribeLogGroupsRequest {
-        return {
-          limit: 1,
-          logGroupNamePrefix: id,
-        };
-      },
+      query: [
+        {
+          client: 'CloudWatchLogs',
+          key: ['logGroups', 0],
+          method: 'describeLogGroups',
+          requestInputParam: logGroupViewQueryRequestInputParam,
+          request: logGroupViewQueryRequest,
+        },
+      ],
     },
   },
 };
