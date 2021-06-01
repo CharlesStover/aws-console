@@ -16,23 +16,8 @@ export default function useItems(): SideNavigationProps.Item[] {
         type: 'divider',
       },
       {
-        href: '/alarms',
-        text: translate('Alarms') || '...',
-        type: 'link',
-      },
-      {
         href: '/log-groups',
         text: translate('Log groups') || '...',
-        type: 'link',
-      },
-      {
-        href: '/roles',
-        text: translate('Roles') || '...',
-        type: 'link',
-      },
-      {
-        href: '/users',
-        text: translate('Users') || '...',
         type: 'link',
       },
     ],
