@@ -1,13 +1,13 @@
+cache: yarn
 language: node_js
 node_js: 14
 branches:
   only: main
 install:
-- yarn
+  - yarn
 script:
-- yarn eslint
-- yarn test
-- yarn build
+  - yarn test
+  - yarn build
 deploy:
   keep-history: true
   local-dir: build
